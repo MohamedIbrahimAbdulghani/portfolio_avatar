@@ -1,3 +1,13 @@
+<?php
+session_start(); 
+
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +30,15 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
+            <?php if(empty($_SESSION["user"])): ?>
                 <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+            <?php endif; ?>
+
+            <?php if(!empty($_SESSION["user"])): ?>
+                <a class="navbar-brand" href="#page-top"><?php echo $_SESSION["user"]["name"] ?></a>
+            <?php endif; ?>
+
+                
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -30,6 +48,10 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="dashboard/home.php">ADMIN</a></li>
+                        <?php if(!empty($_SESSION["user"])): ?>
+                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="dashboard/logout.php">Logout</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -40,7 +62,12 @@
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="frontassets/assets/img/avataaars.svg" alt="..." />
                 <!-- Masthead Heading-->
+                <?php if(empty($_SESSION["user"])): ?>
                 <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
+                <?php endif; ?>
+                <?php if(!empty($_SESSION["user"])): ?>
+                    <h1 class="masthead-heading text-capitalize mb-0"><?php echo $_SESSION["user"]["name"] ?></h1>
+                <?php endif; ?>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>

@@ -1,5 +1,7 @@
 <?php
 
+require_once "lib/user.php";
+
 if(isset($_POST["submit"])):
 
     // foreach($_POST as $key => $value):
@@ -7,18 +9,27 @@ if(isset($_POST["submit"])):
     // endforeach;
     $name = $_POST["name"];
     $email = $_POST["email"];
-    $password  = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $password = $_POST["password"];
     
 
-    $connection_database = mysqli_connect("localhost", "root", "", "portfolio-avatar");
-    $sql = "INSERT INTO `user` (`name`, `email`, `password`) VALUES  ('$name', '$email', '$password')";
-    $q = mysqli_query($connection_database, $sql);
-    $result = mysqli_affected_rows($connection_database);
-    if($result):
-        echo "success";
-    else:
-        echo "false";
+    if(checkInputRequire($name)):
+      $error_message[] = "Name Is require";
     endif;
+    if(checkInputRequire($email)):
+      $error_message[] = "Email Is Require";
+    endif;
+    if(checkInputRequire($password)):
+      $error_message[] = "Password Is Require";
+    endif;
+
+    if(empty($error_message)):
+      $result = addNewUser($name, $email, $password);
+      $success_message = "Success";
+      header("refresh:1;url=login.php");
+
+    endif;
+
+
 
 
 endif;
@@ -50,7 +61,26 @@ endif;
       <a href="" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Register in to start your session</p>
+
+    <?php if(!empty($error_message)): ?>
+      <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                  <ul>
+                    <?php foreach($error_message as $error): ?>
+                      <li><?php echo $error ?></li>
+                    <?php endforeach; ?>
+                  </ul>
+      </div>  
+    <?php endif; ?>
+
+    <?php if(!empty($success_message)): ?>
+      <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-check"></i><?php echo $success_message ?></h5>
+      </div>  
+    <?php endif; ?>
+
 
       <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST">
         <div class="input-group mb-3">

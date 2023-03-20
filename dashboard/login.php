@@ -1,5 +1,20 @@
 <?php
+session_start();
+require_once "lib/user.php";
 
+if(isset($_POST["submit"])):
+  $email = $_POST["email"];
+  $password  = $_POST["password"];
+
+  $result = selectUser($email, $password);
+  if($result):
+    $_SESSION["user"] = $result;
+    $success_message = " Welcome " . $result["name"];
+    header("refresh:1;url=home.php");
+  else:
+    $error_message[] = "email or password is not found";
+  endif;
+endif;
 
 ?>
 
@@ -23,16 +38,38 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
+
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+      <a href="" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      
+      <?php if(!empty($error_message)): ?>
+      <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                  <ul>
+                    <?php foreach($error_message as $error): ?>
+                      <li><?php echo $error ?></li>
+                    <?php endforeach; ?>
+                  </ul>
+      </div>  
+      <?php endif; ?>
 
-      <form action="../../index3.html" method="post">
+
+      <?php if(!empty($success_message)): ?>
+      <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-check"></i> <?php echo $success_message ?></h5>
+      </div>  
+      <?php endif; ?>
+
+      
+      <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST">
+      
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" placeholder="Email" name="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -40,7 +77,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -49,7 +86,7 @@
         </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block" name="submit">Sign In</button>
           </div>
           <!-- /.col -->
       </form>
