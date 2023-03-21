@@ -5,9 +5,13 @@ if(empty($_SESSION["user"])):
     header("Location: login.php");
 endif;
 
-if(isset($_POST["textarea"])):
+if(isset($_POST["submit"])):
 
-    
+    $tmp_name = $_FILES["image"]["tmp_name"];
+    $file_name = $_FILES["image"]["name"];
+
+    // to move file from server location to real location
+    move_uploaded_file($tmp_name, "upload_file/" . $file_name);
 
 endif;
 
@@ -239,7 +243,7 @@ endif;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Portfolio</h1>
           </div><!-- /.col -->
           
         </div><!-- /.row -->
@@ -250,7 +254,7 @@ endif;
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST" >
+              <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST" enctype="multipart/form-data" >
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Description</label>
@@ -260,7 +264,7 @@ endif;
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" name="img" class="custom-file-input" id="exampleInputFile" >
+                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" >
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                       <div class="input-group-append">
@@ -272,7 +276,7 @@ endif;
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" >Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
               </form>
             </div>
@@ -286,7 +290,8 @@ endif;
     
 
   </div>
-  
+
+ 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>

@@ -1,12 +1,13 @@
 <?php
 session_start();
+
+
 if(empty($_SESSION["user"])):
     header("Location: login.php");
 endif;
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -232,7 +233,7 @@ endif;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">All Portfolio</h1>
           </div><!-- /.col -->
           
         </div><!-- /.row -->
@@ -251,6 +252,7 @@ endif;
 
   </div>
   
+ 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
@@ -295,6 +297,12 @@ endif;
 <script src="backassets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
 <script src="backassets/plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script>
 <!-- overlayScrollbars -->
 <script src="backassets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
@@ -303,5 +311,6 @@ endif;
 <script src="backassets/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="backassets/dist/js/pages/dashboard.js"></script>
+
 </body>
 </html>

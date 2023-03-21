@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "lib/user.php";
+require_once "lib/function.php";
 
 if(isset($_POST["submit"])):
   $email = $_POST["email"];
@@ -41,7 +41,7 @@ endif;
 
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="" class="h1"><b>Admin</b>LTE</a>
+      <a href="" class="h1"><b>Login</b></a>
     </div>
     <div class="card-body">
       
