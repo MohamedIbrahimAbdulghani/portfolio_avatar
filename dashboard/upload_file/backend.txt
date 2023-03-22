@@ -1,0 +1,30 @@
+https://www.youtube.com/watch?v=LLeNCdqGoJE&list=PLe_UJpVeP8qBr0IotQa16V0TCLsf3db71&index=87
+https://www.youtube.com/watch?v=1YrcBJ1rUjM&list=PLe_UJpVeP8qAJSTpDBKZa6CsqpSybJ2d3
+https://www.youtube.com/watch?v=Irh8Dd4DyGw&list=PLe_UJpVeP8qClcmBRRDao3ob7o49hfp_j&index=1
+https://www.youtube.com/watch?v=AW8EkCBZI9Q&list=PL7mt2FDjAkPerZ3sdC-6EXDrNHgdcXJD1		   ==> Practical PHP basics, problem solving and mastering the PHP interview - in Arabic 
+https://www.youtube.com/watch?v=04ZdjWBhm6Q&list=PL7mt2FDjAkPdEgExp0ZNMIiW8vHI8FEK1 => OOP
+https://www.youtube.com/watch?v=sD7GpewSb6w&list=PL7mt2FDjAkPfX30QSw_e8vMctjJQ_PFxa
+https://www.youtube.com/watch?v=bDj0FOymC-I&list=PLCm7ZeRfGSP5u3WilkVBz4s-uQtsy79eb&index=2  ==> مقدمه لارافل مع اشعارت الزمن الحقيقي و الفاير بيز
+https://www.youtube.com/watch?v=PjsPJE_xK70&list=PLrwRNJX9gLs3kkSDgCHFlpgL6qLrlHUBG&index=1  ==> PHP 5.6 and MySQL 5.7
+https://www.youtube.com/watch?v=iHznQtV0BEs&list=PLMTdZ61eBnyrUuvaVAsnGBQdLuNDGlxEg&index=2  ==> PHP MySQL tutorial in Arabic
+https://www.youtube.com/watch?v=RbuLNDobNv8&list=PL7mt2FDjAkPfuS1Vt4AAqGAjHEuKEFAPB		   ==> Pro PHP Security In Arabic 
+https://www.youtube.com/watch?v=OsmPTLA42c4&list=PL7mt2FDjAkPc0zYWg3_UcZr4YiWHx1z48		   ==> Mastering PHP Data Object
+https://www.youtube.com/watch?v=alCYuKqiyeY&list=PLftLUHfDSiZ6MfN8UhhcXDhh64eejvIKK   => API-Course-For-Beginners
+https://www.youtube.com/watch?v=OU5_R5yp8Ec&list=PLMTdZ61eBnyqzVhegrlKy38Zwzky-eugX&index=2  ==> Rest API
+https://www.youtube.com/watch?v=UAbH4bkyHBI&list=PLftLUHfDSiZ4GfPZxaFDsA7ejUzD7SpWa => laravle
+https://itraxacademy.com/home/lesson/backend-round-10/27  ==> Design Batteren & Sass & Laravel
+https://www.youtube.com/watch?v=x4f32i5lYH0&list=PLDoPjvoNmBAwP0emFTIiCNcySKz-mlZj7 ==> PHP Examples & Tutorials
+https://www.youtube.com/watch?v=w6JqPsVP7Ps&list=PLDoPjvoNmBAxXTPncg0W4lhVS32LO_xtQ ==> OOP
+https://www.youtube.com/watch?v=1R4lyINqYfc&list=PLDoPjvoNmBAxAlZ-ss3Ss9XomXfm4FkmZ ==> PHP Upload Script
+https://www.youtube.com/watch?v=el4ODMN4bYk&list=PLpwngcHZlPaf1aw42OGyitm4jh2Dlmi9c&index=2 ==> PHP Projects
+https://www.youtube.com/watch?v=x3HmhJ9rDio&list=PLBLPjjQlnVXW5zy7SBF-Uch6xj8ZHESN9&index=3 ==>PHP & MySQLi - Create a Simple App (Insert, Update and Delete)
+https://www.youtube.com/watch?v=livbRg5twk8&list=PL7mt2FDjAkPepYrMofOwTwxQwJSlZ8N-a&index=2 ==> PHP MVC Project in arabic
+https://www.youtube.com/watch?v=Rpd5uDXwpsU&list=PLDoPjvoNmBAypWmEHEy3awR6Ek9sUe5ZS ==> Secure Your PHP Web Application
+https://www.youtube.com/watch?v=7xjDgKMxiQo ==> Simple Chat Application for beginners using PHP and AJAX
+
+https://www.youtube.com/watch?v=GiNWNd_Qpnk&list=PLCm7ZeRfGSP4NNEikwx3wUAskQHB3p-LK&index=1 	===> *** Larvel ***
+
+https://www.m3aarf.com/certificate/1826
+https://www.m3aarf.com/course/5241/%D9%83%D9%88%D8%B1%D8%B3---%D8%AF%D9%88%D8%B1%D8%A9-%D8%AA%D8%AF%D8%B1%D9%8A%D8%A8%D9%8A%D8%A9-%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85--PHP-and-MySQL-Videos
+https://teracourses.com/ar/course/php-laravel-course11
+mvc

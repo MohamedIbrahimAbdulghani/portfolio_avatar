@@ -1,6 +1,12 @@
 <?php
+session_start();
 
 require_once "lib/function.php";
+
+
+if(!empty($_SESSION["user"])):
+  header("Location: home.php");
+endif;
 
 if(isset($_POST["submit"])):
 

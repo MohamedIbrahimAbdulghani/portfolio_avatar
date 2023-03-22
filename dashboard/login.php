@@ -2,11 +2,15 @@
 session_start();
 require_once "lib/function.php";
 
+if(!empty($_SESSION["user"])):
+  header("Location: home.php");
+endif;
+
 if(isset($_POST["submit"])):
   $email = $_POST["email"];
   $password  = $_POST["password"];
 
-  $result = selectUser($email, $password);
+  $result = getUser($email, $password);
   if($result):
     $_SESSION["user"] = $result;
     $success_message = " Welcome " . $result["name"];
@@ -24,7 +28,7 @@ endif;
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Log in</title>
+  <title>Login</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

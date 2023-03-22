@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "lib/function.php";
 
 if(empty($_SESSION["user"])):
     header("Location: login.php");
@@ -9,10 +10,30 @@ if(isset($_POST["submit"])):
 
     $tmp_name = $_FILES["image"]["tmp_name"];
     $file_name = $_FILES["image"]["name"];
+    $description = $_POST["description"];
+    $user_id = $_SESSION["user"]["id"];
 
     // to move file from server location to real location
+
     move_uploaded_file($tmp_name, "upload_file/" . $file_name);
 
+    if(!checkInputRequire($file_name) && !checkInputRequire($description)):
+      $data = (insertPortfolio($file_name, $description, $user_id));
+      $success_message = "Project inserted";
+    endif;
+
+    if(checkInputRequire($description)):
+      $error_message[] = "description is required";
+    endif;
+
+
+    if(checkInputRequire($file_name)):
+      $error_message[] = "image is required";
+    endif;
+
+
+
+    
 endif;
 
 
@@ -256,9 +277,29 @@ endif;
               <!-- form start -->
               <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST" enctype="multipart/form-data" >
                 <div class="card-body">
+                <?php if(!empty($error_message)): ?>
+                    <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h5><i class="icon fas fa-ban"></i> Error</h5>
+                                <ul>
+                                  <?php foreach($error_message as $error): ?>
+                                    <li><?php echo $error ?></li>
+                                  <?php endforeach; ?>
+                                </ul>
+                    </div>  
+                <?php endif; ?>
+
+                <?php if(!empty($success_message)): ?>
+                    <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-check"></i> <?php echo $success_message ?></h5>
+                    </div>  
+                <?php endif; ?>
+
+
                   <div class="form-group">
                     <label for="exampleInputEmail1">Description</label>
-                    <textarea name="textarea"  class="form-control textarea" placeholder="Enter Description"></textarea>
+                    <textarea name="description"  class="form-control textarea" placeholder="Enter Description"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -291,7 +332,7 @@ endif;
 
   </div>
 
- 
+
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>

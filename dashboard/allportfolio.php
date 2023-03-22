@@ -1,10 +1,13 @@
 <?php
 session_start();
-
+require_once "lib/function.php";
 
 if(empty($_SESSION["user"])):
     header("Location: login.php");
 endif;
+
+
+$projects = getPortfolio();
 
 
 ?>
@@ -34,6 +37,10 @@ endif;
   <link rel="stylesheet" href="backassets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="backassets/plugins/daterangepicker/daterangepicker.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="backassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="backassets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="backassets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="backassets/plugins/summernote/summernote-bs4.min.css">
 </head>
@@ -238,7 +245,46 @@ endif;
           
         </div><!-- /.row -->
         
-
+        <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">DataTable with default features</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12"><table id="example" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                  <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th>User</th>
+                    <th>Image</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach($projects as $project): ?>
+                  <tr>
+                    <td><?php echo $project["description"]?></td>
+                    <td><?php echo $project["name"]?></td>
+                    <td><img src="<?php echo "upload_file/".$project["image"]?>" width="250px" style="" ></td>
+                    <td class="text-center"><a href="updateportfolio.php?projectId=<?= $project["id"] ?>" class="btn btn-secondary">Update</a></td>
+                    <td class="text-center"><a href="deleteportfolio.php?projectId=<?= $project["id"]; ?>" class="btn btn-danger">Delete</a></td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Description</th>
+                    <th>User</th>
+                    <th>Image</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                  </tr>
+                  </tfoot>
+                </table></div></div></div>
+              </div>
+              <!-- /.card-body -->
+            </div>
         
         
       </div>
@@ -252,7 +298,7 @@ endif;
 
   </div>
   
- 
+
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
@@ -302,6 +348,24 @@ endif;
     // Summernote
     $('.textarea').summernote()
   })
+</script>
+<!-- DataTables  & Plugins -->
+<script src="backassets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="backassets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="backassets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="backassets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+    $(function () {
+    $('#example').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
 </script>
 <!-- overlayScrollbars -->
 <script src="backassets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
