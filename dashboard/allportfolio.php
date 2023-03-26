@@ -267,8 +267,8 @@ $projects = getPortfolio();
                     <td><?php echo $project["description"]?></td>
                     <td><?php echo $project["name"]?></td>
                     <td><img src="<?php echo "upload_file/".$project["image"]?>" width="250px" style="" ></td>
-                    <td class="text-center"><a href="updateportfolio.php?projectId=<?= $project["id"] ?>" class="btn btn-secondary">Update</a></td>
-                    <td class="text-center"><a href="deleteportfolio.php?projectId=<?= $project["id"]; ?>" class="btn btn-danger">Delete</a></td>
+                    <td class="text-center"><a href="updateportfolio.php?projectId=<?php echo $project["id"]; ?>" class="btn btn-secondary">Update</a></td>
+                    <td class="text-center"><a href="deleteportfolio.php?projectId=<?php echo $project["id"]; ?>" class="btn btn-danger">Delete</a></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>

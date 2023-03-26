@@ -6,34 +6,30 @@ if(empty($_SESSION["user"])):
     header("Location: login.php");
 endif;
 
+
+
 if(isset($_POST["submit"])):
 
-    $tmp_name = $_FILES["image"]["tmp_name"];
-    $file_name = $_FILES["image"]["name"];
     $description = $_POST["description"];
-    $user_id = $_SESSION["user"]["id"];
+    $projectId = $_POST["projectId"];
 
-    // to move file from server location to real location
-
-    move_uploaded_file($tmp_name, "upload_file/" . $file_name);
-
-    if(!checkInputRequire($file_name) && !checkInputRequire($description)):
-      $data = (insertPortfolio($file_name, $description, $user_id));
-      $success_message = "Project inserted";
+    if(isset($_FILES["image"]["tmp_name"])):
+      $tmp_name = $_FILES["image"]["tmp_name"];
+      $file_name = $_FILES["image"]["name"];
+      move_uploaded_file($tmp_name, "upload_file/" . $file_name);
+    else:
+      $file_name = "";
+    endif;
+    $result = updatePortfolio($projectId, $file_name,$description);
+    if($result):
+      header("Location: allportfolio.php");
     endif;
 
-    if(checkInputRequire($description)):
-      $error_message[] = "description is required";
-    endif;
+  else:
+    $projectId = $_GET["projectId"];
+    $data = getPortfolioById($projectId);
 
 
-    if(checkInputRequire($file_name)):
-      $error_message[] = "image is required";
-    endif;
-
-
-
-    
 endif;
 
 
@@ -243,6 +239,12 @@ endif;
                 </a>
               </li>
               <li class="nav-item">
+                <a href="portfolio.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>PORTFOLIO</p>
+                </a>
+              </li>            
+              <li class="nav-item">
                 <a href="allportfolio.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ALL PORTFOLIO</p>
@@ -264,7 +266,7 @@ endif;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Portfolio</h1>
+            <h1 class="m-0">Update Portfolio</h1>
           </div><!-- /.col -->
           
         </div><!-- /.row -->
@@ -277,33 +279,12 @@ endif;
               <!-- form start -->
               <form action="<?php echo $_SERVER["PHP_SELF"] ?>" method="POST" enctype="multipart/form-data" >
                 <div class="card-body">
-                <?php if(!empty($error_message)): ?>
-                    <div class="alert alert-danger alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h5><i class="icon fas fa-ban"></i> Error</h5>
-                                <ul>
-                                  <?php foreach($error_message as $error): ?>
-                                    <li><?php echo $error ?></li>
-                                  <?php endforeach; ?>
-                                </ul>
-                    </div>  
-                    
-                <?php endif; ?>
-
-
-
-                <?php if(!empty($success_message)): ?>
-                    <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fas fa-check"></i> <?php echo $success_message ?></h5>
-                    </div>  
-                <?php endif; ?>
-
 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Description</label>
-                    <textarea name="description"  class="form-control textarea" placeholder="Enter Description"></textarea>
+                    <textarea name="description"  class="form-control textarea" placeholder="Enter Description"><?php echo $data["description"] ?></textarea>
                   </div>
+                  <img src="upload_file/<?php echo $data["image"] ?> " width="250px" alt="">
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
@@ -314,13 +295,14 @@ endif;
                       <div class="input-group-append">
                         <span class="input-group-text">Upload</span>
                       </div>
+                      <input type="hidden" name="projectId" value="<?php echo $projectId ?>">
                     </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Update</button>
                 </div>
               </form>
             </div>

@@ -64,6 +64,15 @@ function getPortfolio() {
     return $projects;
 }
 
+// this function to select portfolio by id from database
+function getPortfolioById($id) {
+    global $connection_database;
+    $sql = "SELECT * FROM `user_portfolio` WHERE `id` = '$id' ";
+    $q = mysqli_query($connection_database, $sql);
+    $result = mysqli_fetch_assoc($q);
+    return $result;
+}
+
 // this function to delete portfolio
 function deletePortfolio($projectId) {
     global $connection_database;
@@ -77,3 +86,23 @@ function deletePortfolio($projectId) {
     endif;
 }
 
+// this function to update portfolio from database
+function updatePortfolio($id, $image, $description) {
+    global $connection_database;
+    $sql = "UPDATE `portfolio` SET `description`='$description' ";
+
+    if(!empty($image)):
+        $sql .= " , `image` = '$image' ";
+    endif;
+
+    $sql .= " WHERE `id` = '$id' ";
+
+
+    $q = mysqli_query($connection_database, $sql);
+    $result = mysqli_affected_rows($connection_database);
+    if($result):
+        return true;
+    else:
+        return false;
+    endif;
+}
