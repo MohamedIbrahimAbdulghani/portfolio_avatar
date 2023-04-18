@@ -4,6 +4,10 @@ require_once "dashboard/lib/function.php";
 
 
 $projects = getPortfolio();
+if(!empty($_SESSION["user"])):
+    $id = $_SESSION["user"]["id"];
+    $result = getPortfolioImage($id);
+endif;
 
 ?>
 
@@ -61,8 +65,15 @@ $projects = getPortfolio();
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
+                <?php if(empty($_SESSION["user"])): ?>
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="frontassets/assets/img/avataaars.svg" alt="..." />
+                <?php endif; ?>
+
+                    <?php if(!empty($_SESSION["user"])): ?>
+                <!-- Masthead Avatar Image-->
+                <img class="masthead-avatar mb-5" src="<?php echo "dashboard/upload_file/" . $result["image"]; ?>" alt="..." />
+                <?php endif; ?>
                 <!-- Masthead Heading-->
                 <?php if(empty($_SESSION["user"])): ?>
                 <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>

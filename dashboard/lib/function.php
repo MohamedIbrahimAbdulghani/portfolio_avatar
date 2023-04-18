@@ -106,3 +106,11 @@ function updatePortfolio($id, $image, $description) {
         return false;
     endif;
 }
+// this is function to get image from portfolio
+function getPortfolioImage($id) {
+    global $connection_database;
+    $sql = "SELECT * FROM `portfolio` WHERE `user_id` = '$id' ";
+    $q = mysqli_query($connection_database, $sql);
+    $result = mysqli_fetch_assoc($q);
+    return $result;
+}
